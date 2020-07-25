@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Vue</title>
+</head>
+<body>
+    <div id="app">
+        <h1>差值表达式</h1>
+        <h3>{{ msg }}</h3>
+        <h3>{{ count }}</h3>
+        <h1>v-test</h1>
+        <div v-text="msg"></div>
+        <h1>v-model</h1>
+        <input type="text" v-model="msg" v-on:input="onInput">
+        <input type="text" v-model="count" @input="onInput2">
+        <button v-on:click="handler">v-on:click</button>
+        <button @click="handler2">@click</button>
+        <h2 v-html="url"></h2>
+    </div>
+</body>
+<script src="./js/dep.js"></script>
+<script src="./js/watcher.js"></script>
+<script src="./js/compiler.js"></script>
+<script src="./js/observer.js"></script>
+<script src="./js/vue.js"></script>
+
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World',
+            count: 100,
+            option: {
+                name:'lbj'
+            },
+            url : '<a href="http://www.baidu.com"> 百度一下 <a/>'
+        },
+        methods: {
+            handler () {
+                console.log(this.msg)
+            },
+            handler2 () {
+                console.log(this.count)
+            },
+            onInput () {
+                console.log(this.msg)
+            },
+            onInput2 () {
+                console.log(this.count)
+            }
+        }
+    })
+
+    let element = document.querySelector('#app')
+    let s = ''
+    for (var key in element) {
+        s += key + ','
+    }
+    console.log(s)
+</script>
+</html>
